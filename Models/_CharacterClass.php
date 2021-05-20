@@ -150,13 +150,13 @@ abstract class  CharacterClass
 
         }
         if ($player->getHasDefenceSkill()) {
-            echo "defance";
+//            echo "defance";
         }
         $damage = $this->getStrength() - $player->getDefence();
         $health = $player->getHealth() - $damage;
         $player->setHealth($health);
-        echo "Attacker life : {$this->getHealth()} \n";
-        echo "Defeater life : {$player->getHealth()} \n";
+//        echo "Attacker life : {$this->getHealth()} \n";
+//        echo "Defeater life : {$player->getHealth()} \n";
 
     }
 

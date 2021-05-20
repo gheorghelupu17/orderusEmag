@@ -26,9 +26,9 @@ class Game
     public function play()
     {
         $skills = [0,0];
-        echo "Bestie:".$this->beast->getHealth()."\n";
+//        echo "Bestie:".$this->beast->getHealth()."\n";
 
-        echo "Orderus:".$this->orderus->getHealth()."\n";
+//        echo "Orderus:".$this->orderus->getHealth()."\n";
         while ($this->roundCounter < $this->rounds) {
             $firstPlayer = $this->whoAttackFirst();
             $secondPlayer = $this->getSecondPlayer($firstPlayer);

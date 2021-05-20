@@ -9,5 +9,6 @@
             "Utils\\": "src/Utils",
             "Skills\\": "src/Skills"
         }
-    }
+    },
+    "description": "Emag Orderus"
 }

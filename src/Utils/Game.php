@@ -2,9 +2,10 @@
 
 namespace Orderus\Utils;
 
-use Orderus\Models\BeastClass;
-use Orderus\Models\CharacterClass;
-use Orderus\Models\OrderusClass;
+use Orderus\Players\Beast;
+use Orderus\Players\CharacterTrait;
+use Orderus\Players\Orderus;
+use Orderus\Players\Player;
 
 class Game
 {
@@ -17,9 +18,10 @@ class Game
 
     public function __construct()
     {
-        $this->orderus = new OrderusClass();
-        $this->beast = new BeastClass();
-        $this->rounds = _GAME_ROUNDS;
+        $this->orderus = new Orderus();
+        $this->beast = new Beast();
+        $this->config = new Config();
+        $this->rounds = $this->config->game_rounds;
     }
 
     public function play()
@@ -70,10 +72,9 @@ class Game
         }
     }
 
-    private function getSecondPlayer(CharacterClass $firstPlayer)
+    private function getSecondPlayer(Player $firstPlayer)
     {
-        //@TODO change
-        if (get_class($firstPlayer) === "Orderus\Models\OrderusClass") {
+        if (get_class($firstPlayer) === "Orderus\Player\Orderus") {
             return $this->beast;
         }
         return $this->orderus;

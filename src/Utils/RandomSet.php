@@ -25,10 +25,8 @@ class RandomSet
     public function randomWeight()
     {
         $index = rand(0, count($this->values) - 1);
-        echo  var_export($this->values);
         $value = $this->values[$index];
         array_splice($this->values, $index, 1);
-        $this->values = array_values($this->values);
         return $value;
     }
 

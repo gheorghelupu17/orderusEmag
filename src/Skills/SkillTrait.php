@@ -6,7 +6,7 @@ namespace Orderus\Skills;
 
 use Orderus\Utils\RandomSet;
 
-abstract class SkillClass
+trait SkillTrait
 {
     private $type;
     private $chanceToUse;
@@ -23,7 +23,7 @@ abstract class SkillClass
 
     /**
      * @param mixed $type
-     * @return SkillClass
+     * @return SkillTrait
      */
     public function setType($type)
     {
@@ -41,11 +41,10 @@ abstract class SkillClass
 
     /**
      * @param mixed $chanceToUse
-     * @return SkillClass
+     * @return SkillTrait
      */
     public function setChanceToUse($chanceToUse)
     {
-
         $this->chanceToUse = $chanceToUse;
         return $this;
     }
@@ -60,7 +59,7 @@ abstract class SkillClass
 
     /**
      * @param mixed $action
-     * @return SkillClass
+     * @return SkillTrait
      */
     public function setAction($action)
     {
@@ -79,7 +78,7 @@ abstract class SkillClass
 
     public function setRandomInstance(): void
     {
-        $random =new RandomSet();
+        $random = new RandomSet();
         $this->randomInstance = $random->setRandomWeigh($this->chanceToUse);
     }
 

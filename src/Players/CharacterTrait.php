@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Orderus\Models;
+namespace Orderus\Players;
 
 
-abstract class  CharacterClass
+trait   CharacterTrait
 {
     private $health;
     private $strength;
@@ -14,9 +14,6 @@ abstract class  CharacterClass
     private $hasAttackSkill = false;
     private $hasDefenceSkill = false;
 
-    protected function __construct()
-    {
-    }
 
     /**
      * @return mixed
@@ -130,17 +127,23 @@ abstract class  CharacterClass
         $this->hasDefenceSkill = $hasDefenceSkill;
     }
 
-
-    public function attack(CharacterClass $player)
+    public function getName(): string
     {
-        $defaceFromSkills = 0;
+        return __CLASS__;
+    }
+
+
+    public function attack(Player $player)
+    {
+        $defaceFromSkills = 1;
+        $attackFromSkills = 1;
         if ($this->getHasAttackSkill()) {
             $skills = $this->getAttackSkills();
             foreach ($skills as $skill) {
                 if ($skill->getRandomInstance()->randomWeight()) {
                     if ($skill->getAction() == 'attack_twice') {
                         echo "attack_twice used\n";
-                        $this->attack($player);
+                        $attackFromSkills = 2;
                     }
                 }
             }
@@ -156,11 +159,11 @@ abstract class  CharacterClass
                 }
             }
         }
-        echo "Before attack player has: {$player->getHealth()}\n";
-        $damage = ($this->getStrength() - $player->getDefence())*$defaceFromSkills;
-        $health = $player->getHealth() - $damage ;
+        echo "Before {$player->getName()} player has: {$player->getHealth()}\n";
+        $damage = (($this->getStrength() * $attackFromSkills) - $player->getDefence()) * $defaceFromSkills;
+        $health = $player->getHealth() - $damage;
         $player->setHealth($health);
-        echo "After attack player has: {$player->getHealth()}\n";
+        echo "After attack {$player->getName()} has: {$player->getHealth()}\n";
     }
 
 

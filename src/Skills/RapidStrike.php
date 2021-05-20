@@ -4,11 +4,16 @@
 namespace Orderus\Skills;
 
 
-class RapidStrike extends SkillClass
+use Orderus\Utils\Config;
+
+class RapidStrike
 {
+    use  SkillTrait;
+
     public function __construct()
     {
-        $this->setType(_ATTACK_SKILL);
+        $config = new Config();
+        $this->setType($config->attack_skill);
         $this->setChanceToUse(10);
         $this->setAction("attack_twice");
         $this->setRandomInstance();

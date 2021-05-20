@@ -32,6 +32,7 @@ class ComposerStaticInit0fbc48c538f60e5e8ffb5d2030db24e0
         ),
         'O' => 
         array (
+            'Orderus\\Tests\\' => 14,
             'Orderus\\' => 8,
         ),
         'D' => 
@@ -63,6 +64,10 @@ class ComposerStaticInit0fbc48c538f60e5e8ffb5d2030db24e0
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'Orderus\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Orderus\\' => 
         array (

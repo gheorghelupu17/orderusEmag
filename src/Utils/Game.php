@@ -25,7 +25,7 @@ class Game
 
     public function play()
     {
-        $skills = [0,0];
+        $skills = [0, 0];
         while ($this->checkHealth() && $this->roundCounter < $this->rounds) {
             echo "Round :{$this->roundCounter}\n\n";
             $firstPlayer = $this->whoAttackFirst();
@@ -38,11 +38,13 @@ class Game
             $secondPlayer->attack($firstPlayer);
             $this->roundCounter++;
         }
-        die();
+        $winner = get_class($this->winner);
+        echo "\n\n\n Castigatorul e {$winner} \n\n\n";
     }
 
     private function checkHealth()
     {
+        $this->winner = $this->orderus;
         if ($this->beast->getHealth() < 1) {
             $this->winner = $this->orderus;
             return false;
@@ -72,11 +74,18 @@ class Game
 
     private function getSecondPlayer(CharacterClass $firstPlayer)
     {
-
         if (get_class($firstPlayer) === "Models\OrderusClass") {
             return $this->beast;
         }
         return $this->orderus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWinner()
+    {
+        return $this->winner;
     }
 
 }

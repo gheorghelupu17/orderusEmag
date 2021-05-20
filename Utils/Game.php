@@ -29,7 +29,7 @@ class Game
         echo "Bestie:".$this->beast->getHealth()."\n";
 
         echo "Orderus:".$this->orderus->getHealth()."\n";
-        while ($this->checkHealth() && $this->roundCounter < $this->rounds) {
+        while ($this->roundCounter < $this->rounds) {
             $firstPlayer = $this->whoAttackFirst();
             $secondPlayer = $this->getSecondPlayer($firstPlayer);
             $firstPlayer->attack($secondPlayer);

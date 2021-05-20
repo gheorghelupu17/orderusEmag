@@ -4,6 +4,7 @@
 namespace Models;
 
 
+use phpDocumentor\Reflection\Types\This;
 use Skills\SkillClass;
 use Utils\RandomSet;
 
@@ -40,6 +41,17 @@ class OrderusClass extends CharacterClass
         $this->skills = $skills;
     }
 
+    protected function getAttackSkills()
+    {
+        $tmp = [];
+        foreach ($this->getSkills() as $skill) {
+            if ($skill->getType() == _ATTACK_SKILL) {
+                $tmp [] = $skill;
+            }
+        }
+        return $tmp ;
+    }
+
     public function addSkill(SkillClass $skill)
     {
         if ($skill->getType() == 'attack') {
@@ -65,8 +77,6 @@ class OrderusClass extends CharacterClass
             $this->addSkill($skillClass);
         }
     }
-
-
 
 
 }

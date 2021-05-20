@@ -21,9 +21,11 @@ class RandomSet
     }
     public function randomWeight()
     {
-        $index = rand(0,count($this->values));
+        $index = rand(0,count($this->values)-1);
+//        echo "lista:".count($this->values)."\n";
+//        print_r($this->values);
         $value  = $this->values[$index];
-        unset($this->values[$index]);
+        array_splice($this->values, $index, 1);
         return $value;
     }
 

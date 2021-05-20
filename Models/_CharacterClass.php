@@ -135,10 +135,19 @@ abstract class  CharacterClass
         $this->hasDefenceSkill = $hasDefenceSkill;
     }
 
+
     public function attack(CharacterClass $player)
     {
         if ($this->getHasAttackSkill()) {
-            echo "attack";
+            $skills =$this->getAttackSkills();
+            foreach ($skills as $skill)
+            {
+                if ($skill->getRandomInstance()->randomWeight())
+                {
+                    var_dump(1);
+                }
+            }
+
         }
         if ($player->getHasDefenceSkill()) {
             echo "defance";
@@ -150,5 +159,7 @@ abstract class  CharacterClass
         echo "Defeater life : {$player->getHealth()} \n";
 
     }
+
+
 
 }

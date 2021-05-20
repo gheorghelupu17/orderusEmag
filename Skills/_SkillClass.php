@@ -11,6 +11,7 @@ abstract class SkillClass
     private $type;
     private $chanceToUse;
     private $action;
+    private $randomInstance;
 
     /**
      * @return mixed
@@ -44,8 +45,8 @@ abstract class SkillClass
      */
     public function setChanceToUse($chanceToUse)
     {
-        $random = new RandomSet();
-        $this->chanceToUse = $random->setRandomWeigh($chanceToUse);;
+
+        $this->chanceToUse = $chanceToUse;
         return $this;
     }
 
@@ -65,6 +66,21 @@ abstract class SkillClass
     {
         $this->action = $action;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRandomInstance()
+    {
+        return $this->randomInstance;
+    }
+
+
+    public function setRandomInstance(): void
+    {
+        $random =new RandomSet();
+        $this->randomInstance = $random->setRandomWeigh($this->chanceToUse);
     }
 
 

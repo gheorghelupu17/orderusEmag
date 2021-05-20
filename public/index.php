@@ -1,8 +1,8 @@
 <?php
 
-use Utils\Game;
+use Orderus\Utils\Game;
 
-require_once 'autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 require_once 'config.php';
 
 $game = new Game();

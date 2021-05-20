@@ -10,7 +10,8 @@ class MagicShield extends SkillClass
     {
         $this->setType(_DEFENCE_SKILL);
         $this->setChanceToUse(20);
-        $this->setAction('take_half');
+        $this->setAction('magic_shield');
+        $this->setRandomInstance();
 
     }
 

@@ -11,8 +11,8 @@ abstract class  CharacterClass
     private $defence;
     private $speed;
     private $luck;
-    private $hasAttackSkill;
-    private $hasDefenceSkill;
+    private $hasAttackSkill = false;
+    private $hasDefenceSkill = false;
 
     protected function __construct()
     {
@@ -98,11 +98,6 @@ abstract class  CharacterClass
         $this->luck = $luck;
     }
 
-
-    public function getDefenceSkills()
-    {
-    }
-
     /**
      * @return mixed
      */
@@ -138,22 +133,32 @@ abstract class  CharacterClass
 
     public function attack(CharacterClass $player)
     {
+        $defaceFromSkills = 0;
         if ($this->getHasAttackSkill()) {
             $skills = $this->getAttackSkills();
             foreach ($skills as $skill) {
                 if ($skill->getRandomInstance()->randomWeight()) {
                     if ($skill->getAction() == 'attack_twice') {
+                        echo "attack_twice used\n";
                         $this->attack($player);
                     }
                 }
             }
         }
         if ($player->getHasDefenceSkill()) {
-            echo "defance";
+            $skills = $player->getDefenceSkills();
+            foreach ($skills as $skill) {
+                if ($skill->getRandomInstance()->randomWeight()) {
+                    if ($skill->getAction() == 'magic_shield') {
+                        echo "magic_shield used\n";
+                        $defaceFromSkills = '0.5';
+                    }
+                }
+            }
         }
         echo "Before attack player has: {$player->getHealth()}\n";
-        $damage = $this->getStrength() - $player->getDefence();
-        $health = $player->getHealth() - $damage;
+        $damage = ($this->getStrength() - $player->getDefence())*$defaceFromSkills;
+        $health = $player->getHealth() - $damage ;
         $player->setHealth($health);
         echo "After attack player has: {$player->getHealth()}\n";
     }

@@ -52,6 +52,17 @@ class OrderusClass extends CharacterClass
         return $tmp ;
     }
 
+    protected function getDefenceSkills()
+    {
+        $tmp = [];
+        foreach ($this->getSkills() as $skill) {
+            if ($skill->getType() == _DEFENCE_SKILL) {
+                $tmp [] = $skill;
+            }
+        }
+        return $tmp ;
+    }
+
     public function addSkill(SkillClass $skill)
     {
         if ($skill->getType() == 'attack') {
@@ -62,9 +73,6 @@ class OrderusClass extends CharacterClass
         $this->skills [] = $skill;
     }
 
-    public function removeSkill(SkillClass $skill)
-    {
-    }
 
     private function importSkills($skills)
     {

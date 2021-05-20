@@ -14,6 +14,7 @@ class Config
 
     public function __construct()
     {
+        require_once '../public/config.php';
         $configs = get_defined_constants(true)['user'];
         foreach ($configs as $key => $value) {
             $key = strtolower(trim($key, '_'));

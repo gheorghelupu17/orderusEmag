@@ -23,7 +23,7 @@ class Beast implements Player
 
     public function getName(): string
     {
-        return __CLASS__;
+        return "Beast";
     }
 
 }

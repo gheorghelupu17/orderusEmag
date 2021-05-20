@@ -74,15 +74,12 @@ class Game
 
     private function getSecondPlayer(Player $firstPlayer)
     {
-        if (get_class($firstPlayer) === "Orderus\Players\Orderus") {
+        if (get_class($firstPlayer) === "Orderus") {
             return $this->beast;
         }
         return $this->orderus;
     }
 
-    /**
-     * @return mixed
-     */
     public function getWinner()
     {
         return $this->winner;

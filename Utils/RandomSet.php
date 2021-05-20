@@ -19,7 +19,6 @@ class RandomSet
             }
         }
         shuffle($this->values);
-        var_dump($this->values);
         return $this;
     }
 

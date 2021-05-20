@@ -139,27 +139,24 @@ abstract class  CharacterClass
     public function attack(CharacterClass $player)
     {
         if ($this->getHasAttackSkill()) {
-            $skills =$this->getAttackSkills();
-            foreach ($skills as $skill)
-            {
-                if ($skill->getRandomInstance()->randomWeight())
-                {
-                    var_dump(1);
+            $skills = $this->getAttackSkills();
+            foreach ($skills as $skill) {
+                if ($skill->getRandomInstance()->randomWeight()) {
+                    if ($skill->getAction() == 'attack_twice') {
+                        $this->attack($player);
+                    }
                 }
             }
-
         }
         if ($player->getHasDefenceSkill()) {
-//            echo "defance";
+            echo "defance";
         }
+        echo "Before attack player has: {$player->getHealth()}\n";
         $damage = $this->getStrength() - $player->getDefence();
         $health = $player->getHealth() - $damage;
         $player->setHealth($health);
-//        echo "Attacker life : {$this->getHealth()} \n";
-//        echo "Defeater life : {$player->getHealth()} \n";
-
+        echo "After attack player has: {$player->getHealth()}\n";
     }
-
 
 
 }

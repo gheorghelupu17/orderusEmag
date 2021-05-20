@@ -26,12 +26,14 @@ class Game
     public function play()
     {
         $skills = [0,0];
-//        echo "Bestie:".$this->beast->getHealth()."\n";
-
-//        echo "Orderus:".$this->orderus->getHealth()."\n";
-        while ($this->roundCounter < $this->rounds) {
+        while ($this->checkHealth() && $this->roundCounter < $this->rounds) {
+            echo "Round :{$this->roundCounter}\n\n";
             $firstPlayer = $this->whoAttackFirst();
+            $className = get_class($firstPlayer);
+            echo "First attack make by {$className}\n";
             $secondPlayer = $this->getSecondPlayer($firstPlayer);
+            $className = get_class($secondPlayer);
+            echo "Second attack make by {$className}\n";
             $firstPlayer->attack($secondPlayer);
             $secondPlayer->attack($firstPlayer);
             $this->roundCounter++;
@@ -70,7 +72,8 @@ class Game
 
     private function getSecondPlayer(CharacterClass $firstPlayer)
     {
-        if (get_class($firstPlayer) === "OrderusClass") {
+
+        if (get_class($firstPlayer) === "Models\OrderusClass") {
             return $this->beast;
         }
         return $this->orderus;

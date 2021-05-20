@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Utils;
+namespace src\Utils;
 
 
 class RandomSet

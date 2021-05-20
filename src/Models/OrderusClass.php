@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Models;
+namespace src\Models;
 
 
 use phpDocumentor\Reflection\Types\This;
-use Skills\SkillClass;
-use Utils\RandomSet;
+use src\Skills\SkillClass;
+use src\Utils\RandomSet;
 
 class OrderusClass extends CharacterClass
 {

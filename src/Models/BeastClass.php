@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Models;
+namespace src\Models;
 
-use Models\CharacterClass;
+use src\Models\CharacterClass;
 
 class BeastClass extends CharacterClass
 {

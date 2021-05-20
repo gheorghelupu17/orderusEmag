@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Models;
+namespace src\Models;
 
 
 abstract class  CharacterClass

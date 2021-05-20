@@ -1,9 +1,8 @@
 <?php
 
-
-
+namespace Tests;
 use PHPUnit\Framework\TestCase;
-use Utils\Game;
+use src\Utils\Game;
 
 
 class GameTest extends TestCase
@@ -14,8 +13,5 @@ class GameTest extends TestCase
         $game = new Game();
         $game->play();
         $this->assertNotEmpty($game->getWinner());
-    }
-    public function test__construct()
-    {
     }
 }

@@ -1,11 +1,10 @@
 <?php
 
-namespace Utils;
+namespace src\Utils;
 
-use Models\BeastClass;
-use Models\CharacterClass;
-use Models\OrderusClass;
-use phpDocumentor\Reflection\Types\This;
+use src\Models\BeastClass;
+use src\Models\CharacterClass;
+use src\Models\OrderusClass;
 
 class Game
 {
@@ -25,7 +24,6 @@ class Game
 
     public function play()
     {
-        $skills = [0, 0];
         while ($this->checkHealth() && $this->roundCounter < $this->rounds) {
             echo "Round :{$this->roundCounter}\n\n";
             $firstPlayer = $this->whoAttackFirst();

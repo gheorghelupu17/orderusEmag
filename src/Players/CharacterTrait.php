@@ -13,115 +13,79 @@ trait   CharacterTrait
     private $luck;
     private $hasAttackSkill = false;
     private $hasDefenceSkill = false;
+    private $luckyInstance;
 
 
-    /**
-     * @return mixed
-     */
     public function getHealth()
     {
         return $this->health;
     }
 
-    /**
-     * @param mixed $health
-     */
     public function setHealth($health)
     {
         $this->health = $health;
     }
 
-    /**
-     * @return mixed
-     */
     public function getStrength()
     {
         return $this->strength;
     }
 
-    /**
-     * @param mixed $strength
-     */
     public function setStrength($strength)
     {
         $this->strength = $strength;
     }
 
-    /**
-     * @return mixed
-     */
     public function getDefence()
     {
         return $this->defence;
     }
 
-    /**
-     * @param mixed $defence
-     */
     public function setDefence($defence)
     {
         $this->defence = $defence;
     }
 
-    /**
-     * @return mixed
-     */
     public function getSpeed()
     {
         return $this->speed;
     }
 
-    /**
-     * @param mixed $speed
-     */
+
     public function setSpeed($speed)
     {
         $this->speed = $speed;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLuck()
     {
         return $this->luck;
     }
 
-    /**
-     * @param mixed $luck
-     */
     public function setLuck($luck)
     {
         $this->luck = $luck;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getHasAttackSkill()
+
+    public function getHasAttackSkill(): bool
     {
         return $this->hasAttackSkill;
     }
 
-    /**
-     * @param mixed $hasAttackSkill
-     */
+
     public function setHasAttackSkill($hasAttackSkill): void
     {
         $this->hasAttackSkill = $hasAttackSkill;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getHasDefenceSkill()
+
+    public function getHasDefenceSkill(): bool
     {
         return $this->hasDefenceSkill;
     }
 
-    /**
-     * @param mixed $hasDefenceSkill
-     */
+
     public function setHasDefenceSkill($hasDefenceSkill): void
     {
         $this->hasDefenceSkill = $hasDefenceSkill;
@@ -132,10 +96,30 @@ trait   CharacterTrait
         return __CLASS__;
     }
 
+    public function getLuckyInstance()
+    {
+        return $this->luckyInstance;
+    }
+
 
     public function attack(Player $player)
     {
-        $defaceFromSkills = 1;
+        $attackFromSkills = $this->checkAttackSkills();
+        $defaceFromSkills = $this->checkDefenceSkills($player);
+
+        echo "Before {$player->getName()} player has: {$player->getHealth()}\n";
+        $damage = (($this->getStrength() * $attackFromSkills) - $player->getDefence()) * $defaceFromSkills;
+        if ($this->checkIsLucky($player)) {
+            echo "{$player->getName()} has lucky damage :0\n ";
+            $damage = 0;
+        }
+        $health = $player->getHealth() - $damage;
+        $player->setHealth($health);
+        echo "After attack {$player->getName()} has: {$player->getHealth()}\n";
+    }
+
+    private function checkAttackSkills()
+    {
         $attackFromSkills = 1;
         if ($this->getHasAttackSkill()) {
             $skills = $this->getAttackSkills();
@@ -148,6 +132,13 @@ trait   CharacterTrait
                 }
             }
         }
+        return $attackFromSkills;
+    }
+
+    private function checkDefenceSkills(Player $player)
+    {
+        $defaceFromSkills = 1;
+
         if ($player->getHasDefenceSkill()) {
             $skills = $player->getDefenceSkills();
             foreach ($skills as $skill) {
@@ -159,11 +150,12 @@ trait   CharacterTrait
                 }
             }
         }
-        echo "Before {$player->getName()} player has: {$player->getHealth()}\n";
-        $damage = (($this->getStrength() * $attackFromSkills) - $player->getDefence()) * $defaceFromSkills;
-        $health = $player->getHealth() - $damage;
-        $player->setHealth($health);
-        echo "After attack {$player->getName()} has: {$player->getHealth()}\n";
+        return $defaceFromSkills;
+    }
+
+    private function checkIsLucky(Player $player)
+    {
+        return $player->getLuckyInstance()->getRandomInstance()->randomWeight();
     }
 
 

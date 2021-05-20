@@ -5,6 +5,8 @@ namespace Orderus\Players;
 
 
 use Orderus\Factory\Factory;
+use Orderus\Skills\Lucky;
+use Orderus\Skills\Skill;
 use Orderus\Skills\SkillTrait;
 use Orderus\Utils\Config;
 
@@ -24,27 +26,17 @@ class Orderus implements Player
         $this->setDefence(rand($config->orderus_props['defence']['min'], $config->orderus_props['defence']['max']));
         $this->setSpeed(rand($config->orderus_props['speed']['min'], $config->orderus_props['speed']['max']));
         $this->setLuck(rand($config->orderus_props['luck']['min'], $config->orderus_props['luck']['max']));
+        $this->luckyInstance = new Lucky($this->getLuck());
         $skills = $config->orderus_props['skills'];
         $this->importSkills($skills);
     }
 
-    /**
-     * @return array
-     */
-    public function getSkills()
+    public function getSkills(): array
     {
         return $this->skills;
     }
 
-    /**
-     * @param array $skills
-     */
-    public function setSkills($skills)
-    {
-        $this->skills = $skills;
-    }
-
-    protected function getAttackSkills()
+    public function getAttackSkills(): array
     {
         $tmp = [];
         $config = new Config();
@@ -56,7 +48,7 @@ class Orderus implements Player
         return $tmp;
     }
 
-    protected function getDefenceSkills()
+    public function getDefenceSkills(): array
     {
         $tmp = [];
         $config = new Config();
@@ -68,12 +60,13 @@ class Orderus implements Player
         return $tmp;
     }
 
-    public function addSkill(SkillTrait $skill)
+    public function addSkill(Skill $skill)
     {
         $config = new Config();
         if ($skill->getType() == $config->attack_skill) {
             $this->setHasAttackSkill(true);
-        } else {
+        }
+        if ($skill->getType() == $config->defence_skill) {
             $this->setHasDefenceSkill(true);
         }
         $this->skills [] = $skill;

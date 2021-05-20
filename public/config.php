@@ -27,6 +27,7 @@ const _Orderus_Props_ = [
 ];
 const _DEFENCE_SKILL = "defence";
 const _ATTACK_SKILL = "attack";
+const _Lucky = "lucky";
 const _Beasts_Props_ = [
     'health' => [
         'min' => 60,

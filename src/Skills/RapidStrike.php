@@ -6,7 +6,7 @@ namespace Orderus\Skills;
 
 use Orderus\Utils\Config;
 
-class RapidStrike
+class RapidStrike implements Skill
 {
     use  SkillTrait;
 

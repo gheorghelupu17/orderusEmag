@@ -74,7 +74,7 @@ class Game
 
     private function getSecondPlayer(Player $firstPlayer)
     {
-        if (get_class($firstPlayer) === "Orderus\Player\Orderus") {
+        if (get_class($firstPlayer) === "Orderus\Players\Orderus") {
             return $this->beast;
         }
         return $this->orderus;

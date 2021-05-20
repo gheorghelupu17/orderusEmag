@@ -3,6 +3,7 @@
 
 namespace Orderus\Players;
 
+use Orderus\Skills\Lucky;
 use Orderus\Utils\Config;
 
 class Beast implements Player
@@ -17,6 +18,7 @@ class Beast implements Player
         $this->setDefence(rand($config->beasts_props['defence']['min'], $config->beasts_props['defence']['max']));
         $this->setSpeed(rand($config->beasts_props['speed']['min'], $config->beasts_props['speed']['max']));
         $this->setLuck(rand($config->beasts_props['luck']['min'], $config->beasts_props['luck']['max']));
+        $this->luckyInstance = new Lucky($this->getLuck());
     }
 
     public function getName(): string

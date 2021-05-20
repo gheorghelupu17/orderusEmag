@@ -6,7 +6,7 @@ namespace Orderus\Skills;
 
 use Orderus\Utils\Config;
 
-class MagicShield
+class MagicShield implements Skill
 {
     use SkillTrait;
     public function __construct()

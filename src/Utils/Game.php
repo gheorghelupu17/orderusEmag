@@ -1,10 +1,10 @@
 <?php
 
-namespace src\Utils;
+namespace Orderus\Utils;
 
-use src\Models\BeastClass;
-use src\Models\CharacterClass;
-use src\Models\OrderusClass;
+use Orderus\Models\BeastClass;
+use Orderus\Models\CharacterClass;
+use Orderus\Models\OrderusClass;
 
 class Game
 {
@@ -72,7 +72,8 @@ class Game
 
     private function getSecondPlayer(CharacterClass $firstPlayer)
     {
-        if (get_class($firstPlayer) === "Models\OrderusClass") {
+        //@TODO change
+        if (get_class($firstPlayer) === "Orderus\Models\OrderusClass") {
             return $this->beast;
         }
         return $this->orderus;

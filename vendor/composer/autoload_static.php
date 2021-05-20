@@ -30,6 +30,10 @@ class ComposerStaticInit0fbc48c538f60e5e8ffb5d2030db24e0
             'Prophecy\\' => 9,
             'PhpParser\\' => 10,
         ),
+        'O' => 
+        array (
+            'Orderus\\' => 8,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -59,6 +63,10 @@ class ComposerStaticInit0fbc48c538f60e5e8ffb5d2030db24e0
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'Orderus\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

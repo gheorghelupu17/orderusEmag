@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Skills;
+namespace Orderus\Skills;
 
 
-use src\Utils\RandomSet;
+use Orderus\Utils\RandomSet;
 
 abstract class SkillClass
 {

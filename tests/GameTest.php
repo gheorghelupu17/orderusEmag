@@ -1,8 +1,9 @@
 <?php
 
 namespace Tests;
+use Orderus\Utils\Game;
 use PHPUnit\Framework\TestCase;
-use src\Utils\Game;
+
 
 
 class GameTest extends TestCase

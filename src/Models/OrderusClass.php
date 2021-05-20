@@ -1,12 +1,11 @@
 <?php
 
 
-namespace src\Models;
+namespace Orderus\Models;
 
 
-use phpDocumentor\Reflection\Types\This;
-use src\Skills\SkillClass;
-use src\Utils\RandomSet;
+use Orderus\Factory\Factory;
+use Orderus\Skills\SkillClass;
 
 class OrderusClass extends CharacterClass
 {
@@ -77,11 +76,12 @@ class OrderusClass extends CharacterClass
     private function importSkills($skills)
     {
         foreach ($skills as $skill) {
-            $skillClassName = "Skills\\$skill";
+            $skillClassName = "Orderus\\Skills\\$skill";
+
             if (!class_exists($skillClassName)) {
                 throw new \Error("Error in OrderusClass {$skillClassName} doesn't exist");
             }
-            $skillClass = new $skillClassName();
+            $skillClass = Factory::createSkill($skill);
             $this->addSkill($skillClass);
         }
     }

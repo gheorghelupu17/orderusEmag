@@ -1,9 +1,9 @@
 <?php
 
 
-namespace src\Models;
+namespace Orderus\Models;
 
-use src\Models\CharacterClass;
+use Orderus\Models\CharacterClass;
 
 class BeastClass extends CharacterClass
 {

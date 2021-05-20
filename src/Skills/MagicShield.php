@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Skills;
+namespace Orderus\Skills;
 
 
 class MagicShield extends SkillClass

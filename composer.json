@@ -4,10 +4,9 @@
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
-        "PSR-R": {
-            "src\\Models\\": "./src/Models",
-            "src\\Utils\\": "./src/Utils",
-            "src\\Skills\\": "./src/Skills"
+        "psr-4": {
+            "Orderus\\": "src/",
+            "Orderus\\Tests\\": "tests/"
         }
     },
     "description": "Emag Orderus"

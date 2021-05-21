@@ -27,18 +27,18 @@ class Game
     public function play()
     {
         while ($this->checkHealth() && $this->roundCounter < $this->rounds) {
-            echo "Round :{$this->roundCounter}\n\n";
+            echo "\n \nRound :{$this->roundCounter}\n\n";
             $firstPlayer = $this->whoAttackFirst();
-            $className = get_class($firstPlayer);
+            $className = $firstPlayer->getName();
             echo "First attack make by {$className}\n";
             $secondPlayer = $this->getSecondPlayer($firstPlayer);
-            $className = get_class($secondPlayer);
+            $className = $secondPlayer->getName();
             echo "Second attack make by {$className}\n";
             $firstPlayer->attack($secondPlayer);
             $secondPlayer->attack($firstPlayer);
             $this->roundCounter++;
         }
-        $winner = get_class($this->winner);
+        $winner = $this->winner->getName();
         echo "\n\n\n Castigatorul e {$winner} \n\n\n";
     }
 
@@ -74,7 +74,7 @@ class Game
 
     private function getSecondPlayer(Player $firstPlayer)
     {
-        if (get_class($firstPlayer) === "Orderus") {
+        if ($firstPlayer->getName() === "Orderus") {
             return $this->beast;
         }
         return $this->orderus;
